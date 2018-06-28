@@ -10,8 +10,8 @@ import quick.pager.shiro.boot.simple.ShiroSimpleApplication;
 @SpringBootTest(classes = ShiroSimpleApplication.class)
 public class ShiroSpringBootSimpleApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    public void contextLoads() {
+    }
 
 }

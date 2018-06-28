@@ -4,9 +4,10 @@ server:
 spring:
   shiro:
     realm-class: quick.pager.shiro.boot.simple.shiro.UserRealm
-    login-url: '/admin/login/page'
-    success-url: '/admin/login/success'
-    filter-chain-definition-map: {'[/admin/login/page]':'anon','[/admin/login]':'anon','[/admin/logout]':'anon','[/admin/**]':'authc'}
-    unauthorized-url: '/404'
+    login-url: '/admin/login'
+    success-url: '/admin/success'
+    unauthorized-url: '/admin/404'
+    filter-chain-definition-map: {'[/admin/login/page]':'anon','[/admin/login]':'anon','[/admin/logout]':'anon','[/admin/role/**]':'authc,roles[sp]','[/admin/**]':'authc,roles[admin]'}
+    proxy-target-class: true
   freemarker:
     request-context-attribute: request
