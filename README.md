@@ -1,10 +1,11 @@
 # shiro-spring-boot
 #### 只需简单几个步骤就可以完成与spring-boot无缝对接
 ## 引入项目<code>maven</code>依赖，不需要引入shiro-spring 工程，本项目已经将shiro-spring 的关键内容重新拷贝，后期将逐步优化核心代码逻辑
+
 	<dependency>
-    	    <groupId>quick.pager</groupId>
-	    <artifactId>shiro-spring-boot-starter</artifactId>
-	    <version>1.0.0</version>
+		<groupId>quick.pager</groupId>
+		<artifactId>shiro-spring-boot-starter</artifactId>
+		<version>1.0.0</version>
 	</dependency>
 
 ## 使用<code>shiro-spring-boot</code>方法
