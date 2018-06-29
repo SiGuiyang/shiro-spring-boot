@@ -73,8 +73,7 @@ JDK版本在1.8以上
 3. 在spring boot 资源文件application.yml 添加shiro相关配置信息，shiro-spring-boot 的资源前缀时 ***spring.shiro*** 
 
     例如：
-    
-```yml        
+```yml    
         spring:
           shiro:
             realm-class: quick.pager.shiro.boot.simple.shiro.UserRealm
@@ -82,11 +81,9 @@ JDK版本在1.8以上
             success-url: '/admin/success'
             unauthorized-url: '/admin/404'
             filter-chain-definition-map: {'[/admin/login/page]':'anon','[/admin/login]':'anon','[/admin/logout]':'anon','[/admin/role/**]':'authc,roles[sp]','[/admin/**]':'authc,roles[admin]'}
-            proxy-target-class: true
-	    
-```	    
-  更多配置信息请参考 **ShiroProperties.java**
+            proxy-target-class: true 
+```
 
-    
+更多配置信息请参考 **ShiroProperties.java**
 
 ### 具体可以参考<code>shiro-spring-simple</code>Demo 工程，该Demo以结合Shiro权限的配置设置，可以在aop SubjectAspect 类查看是否具有的权限与路由
