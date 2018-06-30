@@ -87,8 +87,10 @@ public class AopAllianceAnnotationsAuthorizingMethodInterceptor
      * @throws Throwable if the underlying AOP Alliance <code>proceed()</code> call throws a <code>Throwable</code>.
      */
     protected Object continueInvocation(Object aopAllianceMethodInvocation) throws Throwable {
-        MethodInvocation mi = (MethodInvocation) aopAllianceMethodInvocation;
-        return mi.proceed();
+        if (aopAllianceMethodInvocation instanceof MethodInvocation) {
+            return ((MethodInvocation) aopAllianceMethodInvocation).proceed();
+        }
+        return null;
     }
 
     /**

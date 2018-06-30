@@ -57,7 +57,6 @@ public class SecureRemoteInvocationExecutor extends DefaultRemoteInvocationExecu
     /*--------------------------------------------
     |               M E T H O D S               |
     ============================================*/
-    @SuppressWarnings({"unchecked"})
     public Object invoke(final RemoteInvocation invocation, final Object targetObject)
             throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 
@@ -84,11 +83,7 @@ public class SecureRemoteInvocationExecutor extends DefaultRemoteInvocationExecu
             }
 
             Subject subject = builder.buildSubject();
-            return subject.execute(new Callable() {
-                public Object call() throws Exception {
-                    return SecureRemoteInvocationExecutor.super.invoke(invocation, targetObject);
-                }
-            });
+            return subject.execute((Callable) () -> SecureRemoteInvocationExecutor.super.invoke(invocation, targetObject));
         } catch (ExecutionException e) {
             Throwable cause = e.getCause();
             if (cause instanceof NoSuchMethodException) {

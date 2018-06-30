@@ -15,7 +15,7 @@ import quick.pager.shiro.spring.boot.processor.LifecycleBeanPostProcessor;
 import quick.pager.shiro.spring.boot.processor.ShiroEventBusBeanPostProcessor;
 
 @Configuration
-public class ShiroConfiguration {
+public class ShiroCommonConfiguration {
 
 
     /**

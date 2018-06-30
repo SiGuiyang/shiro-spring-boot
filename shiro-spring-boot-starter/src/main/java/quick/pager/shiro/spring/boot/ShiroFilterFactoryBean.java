@@ -29,18 +29,6 @@ import java.util.Map;
 /**
  * {@link FactoryBean FactoryBean} to be used in Spring-based web applications for
  * defining the master Shiro Filter.
- * <h4>Usage</h4>
- * Declare a DelegatingFilterProxy in {@code web.xml}, matching the filter name to the bean id:
- * <pre>
- * &lt;filter&gt;
- *   &lt;filter-name&gt;<b>shiroFilter</b>&lt;/filter-name&gt;
- *   &lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;filter-class&gt;
- *   &lt;init-param&gt;
- *    &lt;param-name&gt;targetFilterLifecycle&lt;/param-name&gt;
- *     &lt;param-value&gt;true&lt;/param-value&gt;
- *   &lt;/init-param&gt;
- * &lt;/filter&gt;
- * </pre>
  * Then, in your spring XML file that defines your web ApplicationContext:
  * <pre>
  * &lt;bean id="<b>shiroFilter</b>" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"&gt;

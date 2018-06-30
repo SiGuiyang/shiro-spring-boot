@@ -35,9 +35,12 @@ import quick.pager.shiro.spring.boot.beans.Session;
 import quick.pager.shiro.spring.boot.interceptor.AuthorizationAttributeSourceAdvisor;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.Filter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
- * Shiro Configuration
+ * Shiro Spring Boot Configuration
  *
  * @author Pager
  * @version 1.0.0
@@ -47,7 +50,7 @@ import javax.annotation.PostConstruct;
 @ConditionalOnClass(ShiroFilterFactoryBean.class)
 @ConditionalOnBean(annotation = EnableShiroConfiguration.class)
 @EnableConfigurationProperties(ShiroProperties.class)
-@Import(ShiroConfiguration.class)
+@Import(ShiroCommonConfiguration.class)
 public class ShiroAutoConfiguration extends AbstractShiroConfiguration {
 
 
@@ -105,8 +108,6 @@ public class ShiroAutoConfiguration extends AbstractShiroConfiguration {
         }
         return sessionDAO;
     }
-
-
 
 
     /**
@@ -205,20 +206,36 @@ public class ShiroAutoConfiguration extends AbstractShiroConfiguration {
     @ConditionalOnMissingBean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+
+        // 登陆成功后的地址
         if (StringUtils.hasLength(this.properties.getSuccessUrl())) {
             shiroFilterFactoryBean.setSuccessUrl(this.properties.getSuccessUrl());
         }
+        // 登陆地址
         if (StringUtils.hasLength(this.properties.getLoginUrl())) {
             shiroFilterFactoryBean.setLoginUrl(this.properties.getLoginUrl());
         }
 
+        // 未授权路径
         if (StringUtils.hasLength(this.properties.getUnauthorizedUrl())) {
             shiroFilterFactoryBean.setUnauthorizedUrl(this.properties.getUnauthorizedUrl());
         }
 
+        // 权限路由配置
         if (!CollectionUtils.isEmpty(this.properties.getFilterChainDefinitionMap())) {
             shiroFilterFactoryBean.setFilterChainDefinitionMap(this.properties.getFilterChainDefinitionMap());
+        }
+
+        // 自定义过滤器
+        if (!CollectionUtils.isEmpty(this.properties.getFilters())) {
+
+            Map<String, Filter> filters = new LinkedHashMap<>();
+            this.properties.getFilters().forEach((key, filterCls) -> {
+                filters.put(key, BeanUtils.instantiateClass(filterCls));
+            });
+            shiroFilterFactoryBean.setFilters(filters);
         }
 
         return shiroFilterFactoryBean;

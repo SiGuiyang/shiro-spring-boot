@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class ShiroEventBusBeanPostProcessor implements BeanPostProcessor {
 
-    final private EventBus eventBus;
+    private final EventBus eventBus;
 
     public ShiroEventBusBeanPostProcessor(EventBus eventBus) {
         this.eventBus = eventBus;

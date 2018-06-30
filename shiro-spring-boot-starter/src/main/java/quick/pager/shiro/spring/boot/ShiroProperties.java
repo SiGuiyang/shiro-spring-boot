@@ -8,6 +8,8 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import quick.pager.shiro.spring.boot.beans.Cookie;
 import quick.pager.shiro.spring.boot.beans.Session;
 
+import javax.servlet.Filter;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -27,7 +29,7 @@ public class ShiroProperties {
     /**
      * 配置权限路由
      */
-    private Map<String, String> filterChainDefinitionMap; //urlPathExpression_to_comma-delimited-filter-chain-definition
+    private Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>(); //urlPathExpression_to_comma-delimited-filter-chain-definition
     /**
      * 登录地址
      */
@@ -40,6 +42,10 @@ public class ShiroProperties {
      * 未授权的地址
      */
     private String unauthorizedUrl;
+    /**
+     * 自定义过滤器
+     */
+    private Map<String,Class<? extends Filter>> filters = new LinkedHashMap<>();
     /**
      * cookie 配置
      */
@@ -109,6 +115,14 @@ public class ShiroProperties {
 
     public void setUnauthorizedUrl(String unauthorizedUrl) {
         this.unauthorizedUrl = unauthorizedUrl;
+    }
+
+    public Map<String, Class<? extends Filter>> getFilters() {
+        return filters;
+    }
+
+    public void setFilters(Map<String, Class<? extends Filter>> filters) {
+        this.filters = filters;
     }
 
     public Cookie getCookie() {

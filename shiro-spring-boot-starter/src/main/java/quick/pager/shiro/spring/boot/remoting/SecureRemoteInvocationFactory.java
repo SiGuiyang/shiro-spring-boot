@@ -29,8 +29,8 @@ public class SecureRemoteInvocationFactory extends DefaultRemoteInvocationFactor
 
     private static final Logger log = LoggerFactory.getLogger(SecureRemoteInvocationFactory.class);
 
-    public static final String SESSION_ID_KEY = SecureRemoteInvocationFactory.class.getName() + ".SESSION_ID_KEY";
-    public static final String HOST_KEY = SecureRemoteInvocationFactory.class.getName() + ".HOST_KEY";
+    static final String SESSION_ID_KEY = SecureRemoteInvocationFactory.class.getName() + ".SESSION_ID_KEY";
+    static final String HOST_KEY = SecureRemoteInvocationFactory.class.getName() + ".HOST_KEY";
 
     private static final String SESSION_ID_SYSTEM_PROPERTY_NAME = "shiro.session.id";
 
