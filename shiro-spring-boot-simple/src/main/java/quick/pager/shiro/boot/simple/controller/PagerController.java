@@ -40,7 +40,7 @@ public class PagerController {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
 
-        return "redirect: /admin/login";
+        return "redirect:/admin/login";
     }
 
     @GetMapping("/success")
